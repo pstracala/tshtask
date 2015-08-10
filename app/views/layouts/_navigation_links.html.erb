@@ -6,6 +6,7 @@
 <% end %>
 <% if user_signed_in? %>
   <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+  <li><%= link_to 'Refresh exchange rates', refresh_rates_path, method: :post, :remote => true %></li>
 <% else %>
   <li><%= link_to 'Sign up', new_user_registration_path %></li>
 <% end %>

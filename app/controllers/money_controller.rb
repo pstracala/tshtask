@@ -14,6 +14,13 @@ class MoneyController < ApplicationController
     #get latest exchange rates and save to db
     #can be helpful: 
     #http://www.nbp.pl/home.aspx?f=/kursy/instrukcja_pobierania_kursow_walut.html
+    exchange = Exchange.new
+    is_saved = exchange.save_current_rates
+    if is_saved.present?
+      render js: "alert('Rates have been updated.');"
+    else
+      render js: "alert('Rates are up-to-date.');"
+    end
   end
 
   def report
