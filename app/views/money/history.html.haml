@@ -1,14 +1,52 @@
 - if @currency_history.present?
-  %h2 History of currency
-  %table{:border => 1}
-    %tbody
-      %tr
-        %td Date
-        %td Buy price
-        %td Sell price 
-      - @currency_history.each do |ch|
+  %center
+    %h2 History of currency
+    %h2= @currency_history.first.name
+    %canvas#chart{:height => "350", :width => "1200", :labels => @labels, :sell_price_array => @sell_price_history, :buy_price_array => @buy_price_history}
+    %table{:border => 1}
+      %tbody
         %tr
-          %td= ch.exchange.name
-          %td= ch.buy_price
-          %td= ch.sell_price        
-      
+          %td Date
+          %td Buy price
+          %td Sell price 
+        - @currency_history.each do |ch|
+          %tr
+            %td= ch.exchange.name
+            %td= ch.buy_price
+            %td= ch.sell_price           
+            
+:javascript
+  jQuery(function() {
+    var data, myNewChart;
+    var labels = document.getElementById("chart").getAttribute("labels");
+    var sell_price_array = document.getElementById("chart").getAttribute("sell_price_array");
+    var buy_price_array = document.getElementById("chart").getAttribute("buy_price_array");
+    sell_price_array = sell_price_array.slice(1, labels.length-1).split(', ');
+    sell_price_array = sell_price_array.map(function (x) { 
+      return parseFloat(x); 
+    });
+    buy_price_array = buy_price_array.slice(1, labels.length-1).split(', ');
+    buy_price_array = buy_price_array.map(function (x) { 
+      return parseFloat(x); 
+    });
+    data = {
+      labels: labels.slice(1, labels.length-1).split(','),
+      datasets: [
+        {
+          fillColor: "rgba(220,220,005,0.5)",
+          strokeColor: "rgba(220,220,005,1)",
+          pointColor: "rgba(220,220,005,1)",
+          pointStrokeColor: "#fff",
+          data: sell_price_array
+        },
+        {
+        fillColor : "rgba(151,187,205,0.5)",
+        strokeColor : "rgba(151,187,205,1)",
+        pointColor : "rgba(151,187,205,1)",
+        pointStrokeColor : "#fff",
+        data : buy_price_array
+      }
+      ]
+    };
+    return myNewChart = new Chart($("#chart").get(0).getContext("2d")).Line(data);
+  });

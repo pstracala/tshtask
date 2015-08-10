@@ -20,6 +20,5 @@
           %td= number_with_precision(@average_buy_price, precision: 4)
           %td= number_with_precision(@average_sell_price, precision: 4)
           %td= @median_buy_price
-          %td= @median_sell_price
-          
-  = link_to 'History', history_path(name: @currency.name)
+          %td= @median_sell_price 
+    = link_to 'History', history_path(name: @currency.name)

@@ -52,6 +52,10 @@ class MoneyController < ApplicationController
   
   def history
     @currency_history = Currency.where(name: params[:name])
+    @labels = Exchange.all.pluck(:name)
+
+    @sell_price_history = @currency_history.pluck(:sell_price)
+    @buy_price_history = @currency_history.pluck(:buy_price)
   end
 
 
