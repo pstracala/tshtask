@@ -1,0 +1,14 @@
+- if @currency_history.present?
+  %h2 History of currency
+  %table{:border => 1}
+    %tbody
+      %tr
+        %td Date
+        %td Buy price
+        %td Sell price 
+      - @currency_history.each do |ch|
+        %tr
+          %td= ch.exchange.name
+          %td= ch.buy_price
+          %td= ch.sell_price        
+      

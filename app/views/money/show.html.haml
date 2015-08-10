@@ -1,0 +1,21 @@
+- if @currencies.present?
+  %center
+    %h2 
+      Currencies rates #{@exchange.name}
+    %table{:border => 1}
+      %tbody
+        %tr
+          %td Name
+          %td Converter
+          %td Code
+          %td Buy price
+          %td Sell price
+          %td Actions
+        - @currencies.each do |currency|
+          %tr
+            %td= currency.name
+            %td= currency.converter
+            %td= currency.code
+            %td= currency.buy_price
+            %td= currency.sell_price
+            %td= link_to 'Generate report', report_path(currency)

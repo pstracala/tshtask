@@ -1,0 +1,25 @@
+- if @currency.present?
+  %center
+    %h2 #{@currency.name}
+    %table{:border => 1}
+      %tbody
+        %tr
+          %td Current average exchange rate
+          %td Current buy price
+          %td Current sell price
+          %td Average exchange rate
+          %td Average buy price
+          %td Average sell price
+          %td Buy price median
+          %td Sell price median       
+        %tr
+          %td= number_with_precision((@currency.buy_price + @currency.sell_price) / 2, precision: 4)
+          %td= @currency.buy_price
+          %td= @currency.sell_price
+          %td= number_with_precision((@average_buy_price + @average_sell_price) / 2, precision: 4)
+          %td= number_with_precision(@average_buy_price, precision: 4)
+          %td= number_with_precision(@average_sell_price, precision: 4)
+          %td= @median_buy_price
+          %td= @median_sell_price
+          
+  = link_to 'History', history_path(name: @currency.name)
