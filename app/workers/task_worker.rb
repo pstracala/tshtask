@@ -6,6 +6,9 @@ class TaskWorker
     exchange = Exchange.new
     is_saved = exchange.save_current_rates
     if is_saved.present?
+      User.find_each do |user|
+        UserMailer.new_rates_mail(user).deliver
+      end
       puts 'Exchange rates have been updated.'
     else
       puts 'Exchange rates are up-to-date.'
