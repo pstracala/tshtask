@@ -15,6 +15,7 @@ gem 'pg'
 gem 'simple_form'
 gem 'sidekiq'
 gem 'chart-js-rails'
+gem "sidekiq-cron", "~> 0.3.0"
 
 group :development do
   gem 'better_errors'
