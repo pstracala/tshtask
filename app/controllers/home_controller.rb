@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
   
   def index
-    #TaskWorker.perform_in(30.seconds)
-    puts Sidekiq::Cron::Job.create(name: 'Hard worker - every 1 min', cron: '*/1 * * * *', klass: 'TaskWorker')
+    #Sidekiq::Cron::Job.create(name: 'Refresh exchange rates everyday at 13', cron: '0 13 * * * *', klass: 'TaskWorker')
   end
 end
