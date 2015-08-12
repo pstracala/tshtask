@@ -1,2 +1,3 @@
-uri = URI.parse(ENV["REDISTOGO_URL"] || "redis://localhost:6379/")
-REDIS_URL = Redis.new(:url => uri)
+require 'redis'
+uri = URI.parse(ENV["REDISCLOUD_URL"] || "redis://localhost:6379/" )
+$redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
