@@ -21,7 +21,7 @@ class MoneyController < ApplicationController
     exchange = Exchange.new
     is_saved = exchange.save_current_rates
     if is_saved.present?
-      User.each do |user|
+      User.find_each do |user|
         UserMailer.new_rates_mail(user).deliver
       end
       #redirect_to money_index_path, notice: 'Rates have been updated.'
