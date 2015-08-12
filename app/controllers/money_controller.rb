@@ -4,8 +4,7 @@ class MoneyController < ApplicationController
   def index
     #show list of exchange rates with creation time
     #don't forget about pagination
-    #TODO: Pagination
-    @exchanges = Exchange.all 
+    @exchanges = Exchange.paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
@@ -56,6 +55,7 @@ class MoneyController < ApplicationController
 
     @sell_price_history = @currency_history.pluck(:sell_price)
     @buy_price_history = @currency_history.pluck(:buy_price)
+    @currency_history = @currency_history.paginate(:page => params[:page], :per_page => 10)
   end
 
 

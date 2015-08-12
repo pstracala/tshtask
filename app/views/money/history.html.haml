@@ -14,7 +14,7 @@
             %td= ch.exchange.name
             %td= ch.buy_price
             %td= ch.sell_price           
-            
+    = will_paginate @currency_history
 :javascript
   jQuery(function() {
     var data, myNewChart;

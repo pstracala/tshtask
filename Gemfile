@@ -18,6 +18,7 @@ gem 'chart-js-rails'
 gem "sidekiq-cron", "~> 0.3.0"
 gem 'nokogiri'
 gem 'redis'
+gem 'will_paginate', '~> 3.0.6'
 
 group :development do
   gem 'better_errors'
