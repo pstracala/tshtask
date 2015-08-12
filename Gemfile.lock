@@ -237,6 +237,7 @@ DEPENDENCIES
   html2haml
   jbuilder (~> 1.2)
   jquery-rails
+  nokogiri
   pg
   puma
   quiet_assets
